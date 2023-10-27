@@ -83,6 +83,7 @@ class OpenAIChatController extends EventEmitter {
         await this.page.reload();
         await this.preparePage();
 
+        console.log("got image path: ",filePath);
         const input = await this.page.$('input[type="file"]');
         await input.uploadFile(filePath);
         // wait until upload is complete
