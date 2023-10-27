@@ -33,10 +33,8 @@ class OpenAIChatController extends EventEmitter {
             const {fetch: origFetch} = window;
             window.fetch = async (...args) => {
               const response = await origFetch(...args);
-            
               if(args[0] === "https://chat.openai.com/backend-api/conversation") {
                 console.log("intercepting conversation...");
-                
                 const { body } = response.clone();
                 const raw = await new Response(body).text();
                 const chunks = raw.split('\ndata: ');
@@ -65,6 +63,7 @@ class OpenAIChatController extends EventEmitter {
         if (!this.page) {
             throw new Error('You need to initialize first');
         }
+        console.log("got text: ",text);
         await this.page.type('#prompt-textarea', text.split('\n').join(';'));
     }
 
@@ -72,6 +71,7 @@ class OpenAIChatController extends EventEmitter {
         if (!this.page) {
             throw new Error('You need to initialize first');
         }
+        console.log("got SendButton action");
         await this.page.waitForSelector('button[data-testid="send-button"]:not([disabled])');
         await this.page.click('[data-testid="send-button"]');
     }
