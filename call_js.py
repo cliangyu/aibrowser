@@ -1,9 +1,6 @@
 import subprocess
 
-imgpath = "/data/lychen/code/web/ai-browser/images/building.jpg"
-text = "what is in the image?"
-
-def call_javascript():
+def call_javascript(imgpath, text):
     try:
         result = subprocess.run(["node", "test.js", imgpath, text], capture_output=True, text=True, check=True)
         print(result.stdout)
@@ -12,4 +9,7 @@ def call_javascript():
         print(e.stderr)
 
 if __name__ == "__main__":
-    call_javascript()
+    imgpath = "/data/lychen/code/web/ai-browser/images/building.jpg"
+    text = "what is in the image?"
+    
+    call_javascript(imgpath,text)
