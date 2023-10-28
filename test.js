@@ -13,13 +13,13 @@ const imgpaths=[
     "/data/lychen/code/web/ai-browser/images/emoji.jpg"
 ];
 
-async function runGPT4(imgpath) {
+async function runGPT4(imgpath,inputText) {
     const chatController = new OpenAIChatController();
 
     try {
         await chatController.initialize();
 
-        const inputText = "what's in the image?";
+        // const inputText = "what's in the image?";
         await chatController.typeIntoPrompt(inputText);
         // const imagePath = "/data/lychen/code/web/ai-browser/building.jpg";
         await chatController.uploadImage(imgpath);
@@ -47,5 +47,12 @@ async function multitask(){
         await runGPT4(imgpath);
     }
 }
-multitask();
+// multitask();
+const args = process.argv.slice(2);
+if (args.length > 0){
+    const imgpath = args[0];
+    const inputText = args[1];
+    runGPT4(imgpath,inputText);
+}
+
 

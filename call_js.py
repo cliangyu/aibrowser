@@ -1,11 +1,11 @@
 import subprocess
 
+imgpath = "/data/lychen/code/web/ai-browser/images/building.jpg"
+text = "what is in the image?"
+
 def call_javascript():
     try:
-        # 调用 JavaScript 文件并执行其中的函数
-        result = subprocess.run(["xvfb-run","node", "test.js"], capture_output=True, text=True, check=True)
-
-        # 打印 JavaScript 返回的结果
+        result = subprocess.run(["node", "test.js", imgpath, text], capture_output=True, text=True, check=True)
         print(result.stdout)
     except subprocess.CalledProcessError as e:
         print("Error:", e)
