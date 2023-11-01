@@ -25,11 +25,11 @@ async function runGPT4(imgpath,inputText) {
         // const imagePath = "/data/lychen/code/web/ai-browser/building.jpg";
         await chatController.clickSendButton();
 
-        console.log("wait for the response");
+        // console.log("wait for the response");
         let gpt4Response = await new Promise((resolve) => {
-            console.log("got a resolve");
+            // console.log("got a resolve");
             chatController.once('end_turn', (response) => {
-                console.log("got a response")
+                // console.log("got a response")
                 resolve(response);
             });
         });

@@ -63,7 +63,7 @@ class OpenAIChatController extends EventEmitter {
         if (!this.page) {
             throw new Error('You need to initialize first');
         }
-        console.log("got text: ",text);
+        // console.log("got text: ",text);
         await this.page.type('#prompt-textarea', text.split('\n').join(';'));
     }
 
@@ -71,7 +71,7 @@ class OpenAIChatController extends EventEmitter {
         if (!this.page) {
             throw new Error('You need to initialize first');
         }
-        console.log("got SendButton action");
+        // console.log("got SendButton action");
         await this.page.waitForSelector('button[data-testid="send-button"]:not([disabled])');
         await this.page.click('[data-testid="send-button"]');
     }
@@ -83,7 +83,7 @@ class OpenAIChatController extends EventEmitter {
         await this.page.reload();
         await this.preparePage();
 
-        console.log("got image path: ",filePath);
+        // console.log("got image path: ",filePath);
         const input = await this.page.$('input[type="file"]');
         await input.uploadFile(filePath);
         // wait until upload is complete

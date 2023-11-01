@@ -13,7 +13,7 @@ class GPT4v():
             print(e.stderr)
 
 if __name__ == "__main__":
-    imgpath = "/data/lychen/code/web/ai-browser/output_image.jpg"
+    imgpath = "/data/lychen/code/web/aibrowser/output_image.jpg"
     text = "what's in the image"
     a = GPT4v(imgpath,text)
     a.call_javascript()
