@@ -6,7 +6,7 @@ class GPT4v():
         self.text = text
     def call_javascript(self):
         try:
-            result = subprocess.run(["node", "test.js", self.imgpath, self.text], capture_output=True, text=True, check=True)
+            result = subprocess.run(["node", "../test.js", self.imgpath, self.text], capture_output=True, text=True, check=True)
             # print(result.stdout)
             ans = result.stdout
             # print(ans)

@@ -5,7 +5,8 @@ const EventEmitter = require('events');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth') 
 puppeteer.use(StealthPlugin()) 
 
-const {executablePath} = require('puppeteer') 
+const {executablePath} = require('puppeteer'); 
+const { log } = require('console');
 
 class OpenAIChatController extends EventEmitter {
     constructor() {
