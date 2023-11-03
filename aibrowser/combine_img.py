@@ -15,10 +15,10 @@ class MergeImage():
         return image
     
     def merge(self, image_paths, text):
-        print("``````````````start fetch imgs````````````````")
+        # print("``````````````start fetch imgs````````````````")
         # images = [Image.open(path) for path in image_paths]
         images = [self.open_image_from_url(url) for url in image_paths]
-        print("``````````````done fetch imgs`````````````````")
+        # print("``````````````done fetch imgs`````````````````")
         font_size = 30
         font = ImageFont.truetype("/data/lychen/code/web/aibrowser/Times New Roman.ttf", font_size)
 
