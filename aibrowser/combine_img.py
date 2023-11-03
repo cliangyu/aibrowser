@@ -1,3 +1,5 @@
+import requests
+from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
 
 image_paths = ["/data/lychen/code/web/ai-browser/images/building.jpg",
@@ -7,11 +9,17 @@ image_paths = ["/data/lychen/code/web/ai-browser/images/building.jpg",
 class MergeImage():
     def __init__(self) -> None:
         pass
+    def open_image_from_url(self, url):
+        response = requests.get(url)
+        image = Image.open(BytesIO(response.content))
+        return image
     
     def merge(self, image_paths, text):
-        images = [Image.open(path) for path in image_paths]
-
-        font_size = 80
+        print("``````````````start fetch imgs````````````````")
+        # images = [Image.open(path) for path in image_paths]
+        images = [self.open_image_from_url(url) for url in image_paths]
+        print("``````````````done fetch imgs`````````````````")
+        font_size = 30
         font = ImageFont.truetype("/data/lychen/code/web/aibrowser/Times New Roman.ttf", font_size)
 
         text_heights = [ImageDraw.Draw(Image.new("RGB", (1, 1))).textsize(txt, font=font)[1] for txt in text]
@@ -36,7 +44,7 @@ class MergeImage():
             
             x = x_offset + (image.width - text_size[0]) // 2
             y = max_height - max_text_height
-            draw.text((x, y), "["+str(num)+"]" + txt, fill=text_color, font=font)
+            draw.text((x, y), txt, fill=text_color, font=font)
             num+=1
             
             x_offset += image.width
